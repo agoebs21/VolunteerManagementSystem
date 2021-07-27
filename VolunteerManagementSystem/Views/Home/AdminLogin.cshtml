@@ -1,0 +1,33 @@
+﻿@model VolunteerManagementSystem.Models.Login
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Admin Login</title>
+</head>
+<body>
+    <meta name="viewport" content="width=device-width" />
+    <div class="text-center">
+        <h1 class="display-4">Admin</h1>
+        <form class="p -a-1" asp-action="AdminLogin" method="post">
+            <div asp-validation-summary="All  "></div>
+            <div>
+                <label asp-for="Username">Username:</label>
+                <input class="form-control" asp-for="Username" />
+            </div>
+            <br />
+            <div>
+                <label asp-for="Password">Password:</label>
+                <input class="form-control" asp-for="Password" />
+            </div>
+            <br />
+            <div>
+                <button class="btn btn-primary text-center" type="submit"> Submit </button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

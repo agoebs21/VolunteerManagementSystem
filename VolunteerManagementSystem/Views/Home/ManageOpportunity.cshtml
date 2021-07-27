@@ -1,0 +1,38 @@
+﻿@model IEnumerable<VolunteerManagementSystem.Models.Login>
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Manage Volunteers</title>
+</head>
+<body>
+    <div class=" container">
+        <h2>Manage Volunteers</h2>
+        <input type="text" placeholder="Search...">
+        <select name="Filter">
+            <option value="" disabled selected>Select Filter</option>
+            <option value="recent">Most Recent (60 days)</option>
+            <option value="center">By Center</option>
+        </select>
+        <table class="table table-sm table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Opportunities</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (VolunteerManagementSystem.Models.Login r in Model)
+                {
+                <tr>
+                    <td>@r.Username</td>
+                    <td>Edit</td> <!--make this a button-->
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

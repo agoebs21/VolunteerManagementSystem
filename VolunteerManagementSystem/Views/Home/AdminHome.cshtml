@@ -1,0 +1,17 @@
+﻿@model VolunteerManagementSystem.Models.Login
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Admin Homepage</title>
+</head>
+<body class="container text-center">
+    <h1>Hello, @Model.Username!</h1>
+    <p><a class="btn-link" asp-action="ManageVolunteer">Manage Volunteers</a></p>
+    <p><a class="btn-link" asp-action="ManageOpportunity">Manage Opportunities</a></p>
+</body>
+</html>
