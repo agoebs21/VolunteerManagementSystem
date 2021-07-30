@@ -47,10 +47,6 @@ namespace VolunteerManagementSystem.Controllers
             return View(LoginRepository.Responses.Where(r => r.Username == "Ashley"));
         }
 
-        public ViewResult ManageVolunteer()
-        {
-            // need to make database to store volunteers & their info
-            return View(LoginRepository.Responses.Where(r => r.Username == "Ashley"));
-        }
+        
     }
 }

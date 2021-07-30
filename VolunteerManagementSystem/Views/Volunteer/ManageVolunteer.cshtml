@@ -1,4 +1,4 @@
-﻿@model IEnumerable<VolunteerManagementSystem.Models.Login>
+﻿@model IEnumerable<Volunteer>
 @{
     Layout = null;
 }
@@ -29,13 +29,15 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (VolunteerManagementSystem.Models.Login r in Model)
+
+                @foreach (var v in Model)
                 {
                     <tr>
-                        <td>@r.Username</td>
-                        <td>Edit</td> <!--make this a button-->
+                        <td><a class="btn-link" asp-action="ViewOpportunities">@v.FirstName @v.LastName</a></td>
+                        <td><button class="editbtn">Edit</button></td>
                     </tr>
                 }
+                
             </tbody>
         </table>
     </div>

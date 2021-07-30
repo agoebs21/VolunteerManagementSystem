@@ -8,22 +8,27 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using VolunteerManagementSystem.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace VolunteerManagementSystem
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        IConfigurationRoot Configuration; 
+        public Startup(IWebHostEnvironment env) 
         {
-            Configuration = configuration;
+            Configuration = new ConfigurationBuilder().SetBasePath(env.ContentRootPath).AddJsonFile("appsettings.json").Build();
         }
-
-        public IConfiguration Configuration { get; }
+        
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))); 
+            services.AddTransient<IVolunteerRepository, EFVolunteerRepository>(); 
+            services.AddMvc(options => options.EnableEndpointRouting = false);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
