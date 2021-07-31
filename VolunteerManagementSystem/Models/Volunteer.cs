@@ -27,4 +27,5 @@ namespace VolunteerManagementSystem.Models
         public bool ValidSocial { get; set; }
         public string Approval { get; set; }
     }
+
 }

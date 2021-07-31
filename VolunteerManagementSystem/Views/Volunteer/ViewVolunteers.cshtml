@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Opportunity>
+﻿@model IEnumerable<Volunteer>
 @{
     Layout = null;
 }
@@ -6,26 +6,25 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Volunteer's List of Opportunities</title>
 </head>
 <body>
     <div class=" container">
-        
-        <h2>Volunteer Name</h2>                  
+
+        <h2>List of Volunteers signed up for a specific opportunity</h2>
 
         <table class="table table-sm table-striped table-bordered">
             <thead>
                 <tr>
-                    <th>Opportunities</th>
+                    <th>Volunteers</th>
                 </tr>
             </thead>
             <tbody>
-                    @foreach (var o in Model)
-                    {
-                        <tr>
-                            <td>@o.Title</td>
-                        </tr>
-                    }
+                @foreach (var v in Model)
+                {
+                    <tr>
+                        <td>@v.FirstName @v.LastName</td>
+                    </tr>
+                }
             </tbody>
         </table>
     </div>

@@ -19,7 +19,15 @@ namespace VolunteerManagementSystem.Controllers
         }
         public ViewResult ViewOpportunities()
         {
-            return View();
+            return View(repository.Opportunities);
+        }
+        public ViewResult ManageOpportunity()
+        {
+            return View(repository.Opportunities);
+        }
+        public ViewResult ViewVolunteers()
+        {
+            return View(repository.Volunteers);
         }
     }
 }

@@ -7,5 +7,6 @@ namespace VolunteerManagementSystem.Models
     public interface IVolunteerRepository 
     {
         IEnumerable<Volunteer> Volunteers { get; } 
+        IEnumerable<Opportunity> Opportunities { get; }
     }
 }

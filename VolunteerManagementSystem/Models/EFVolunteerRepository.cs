@@ -12,5 +12,6 @@ namespace VolunteerManagementSystem.Models
             context = ctx;
         }
         public IEnumerable<Volunteer> Volunteers => context.Volunteers;
+        public IEnumerable<Opportunity> Opportunities => context.Opportunities;
     }
 }

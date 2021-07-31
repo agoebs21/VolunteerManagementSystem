@@ -1,4 +1,4 @@
-﻿@model IEnumerable<VolunteerManagementSystem.Models.Login>
+﻿@model IEnumerable<Opportunity>
 @{
     Layout = null;
 }
@@ -6,11 +6,11 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Manage Volunteers</title>
+    <title>Manage Opportunities</title>
 </head>
 <body>
     <div class=" container">
-        <h2>Manage Volunteers</h2>
+        <h2>Manage Opportunities</h2>
         <input type="text" placeholder="Search...">
         <select name="Filter">
             <option value="" disabled selected>Select Filter</option>
@@ -21,16 +21,19 @@
             <thead>
                 <tr>
                     <th>Opportunities</th>
+                    <th>Description</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (VolunteerManagementSystem.Models.Login r in Model)
+                @foreach (var o in Model)
                 {
                 <tr>
-                    <td>@r.Username</td>
-                    <td>Edit</td> <!--make this a button-->
+                    <td><a class="btn-link" asp-action="ViewVolunteers">@o.Title</a></td>
+                    <td>make details btn to show description</td>
+                    <td><button class="editbtn">Edit</button></td>
                 </tr>
                 }
+                
             </tbody>
         </table>
     </div>
