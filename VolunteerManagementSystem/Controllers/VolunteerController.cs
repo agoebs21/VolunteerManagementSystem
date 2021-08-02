@@ -17,6 +17,26 @@ namespace VolunteerManagementSystem.Controllers
         {
             return View(repository.Volunteers);
         }
+        public ViewResult Edit(int volunteerId) =>
+         View(repository.Volunteers
+         .FirstOrDefault(v => v.VolunteerID == volunteerId));
+
+        [HttpPost]
+        public IActionResult Edit(Volunteer volunteer)
+        {
+            if (ModelState.IsValid)
+            {
+                repository.SaveVolunteer(volunteer);
+                TempData["message"] = $"{volunteer.FirstName +' ' + volunteer.LastName} has been saved";
+                return RedirectToAction("ManageVolunteer");
+            }
+            else
+            {
+                // there is something wrong with the data values
+                return View(volunteer);
+            }
+        }
+        public ViewResult Create() => View("Edit", new Volunteer());
         public ViewResult ViewOpportunities()
         {
             return View(repository.Opportunities);
@@ -27,7 +47,11 @@ namespace VolunteerManagementSystem.Controllers
         }
         public ViewResult ViewVolunteers()
         {
-            return View(repository.Volunteers);
+            return View(new ViewModel
+            {
+                Volunteers = repository.Volunteers,
+                Opportunities = repository.Opportunities
+            });
         }
     }
 }

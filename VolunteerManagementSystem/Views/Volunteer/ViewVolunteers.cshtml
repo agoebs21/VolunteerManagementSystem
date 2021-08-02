@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Volunteer>
+﻿@model ViewModel
 @{
     Layout = null;
 }
@@ -9,8 +9,7 @@
 </head>
 <body>
     <div class=" container">
-
-        <h2>List of Volunteers signed up for a specific opportunity</h2>
+        <h2>opportunity title</h2>
 
         <table class="table table-sm table-striped table-bordered">
             <thead>
@@ -19,7 +18,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var v in Model)
+                @foreach (var v in Model.Volunteers)
                 {
                     <tr>
                         <td>@v.FirstName @v.LastName</td>

@@ -20,7 +20,6 @@
             <option value="disapproved">Disapproved</option>
             <option value="inactive">Inactive</option>
             <option value="all">All</option>
-
         </select>
         <table class="table table-sm table-striped table-bordered">
             <thead>
@@ -32,14 +31,19 @@
 
                 @foreach (var v in Model)
                 {
-                    <tr>
-                        <td><a class="btn-link" asp-action="ViewOpportunities">@v.FirstName @v.LastName</a></td>
-                        <td><button class="editbtn">Edit</button></td>
-                    </tr>
+                <tr>
+                    <td><a class="btn-link" asp-action="ViewOpportunities">@v.FirstName @v.LastName</a></td>
+                    <td><a asp-action="Edit" class="btn btn-sm btn-warning" asp-route-volunteerId="@v.VolunteerID">Edit</a>
+                        <input type="hidden" name="ProductID" value="@v.VolunteerID" />                       
+                    </td>
+                </tr>
                 }
-                
+
             </tbody>
         </table>
+        <div class="text-center">
+            <a asp-action="Create" class="btn btn-primary">Add Volunteer</a>
+        </div>
     </div>
 </body>
 </html>
