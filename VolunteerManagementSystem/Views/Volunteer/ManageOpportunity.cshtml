@@ -21,21 +21,34 @@
             <thead>
                 <tr>
                     <th>Opportunities</th>
-                    <th>Description</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var o in Model)
                 {
                 <tr>
-                    <td><a class="btn-link" asp-action="ViewVolunteers">@o.Title</a></td>
-                    <td>make details btn to show description</td>
-                    <td><button class="editbtn">Edit</button></td>
+                    <td>
+                        <details>
+                            <summary><a class="btn-link" asp-action="ViewVolunteers">@o.Title</a></summary>
+                            <p>@o.Description</p>
+                    </details>
+                    </td>
+
+                    <td>
+                        <form asp-action="Delete" method="post">
+                            <a asp-action="EditOpportunity" class="btn btn-sm btn-warning" asp-route-opportunityId="@o.OpportunityID">Edit</a>
+                            <input type="hidden" name="OpportunityID" value="@o.OpportunityID" />
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    </td>
                 </tr>
                 }
-                
+
             </tbody>
         </table>
+        <div class="text-center">
+            <a asp-action="CreateOpportunity" class="btn btn-primary">Add Opportunity</a>
+        </div>
     </div>
 </body>
 </html>

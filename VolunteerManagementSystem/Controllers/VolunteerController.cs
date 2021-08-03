@@ -17,12 +17,12 @@ namespace VolunteerManagementSystem.Controllers
         {
             return View(repository.Volunteers);
         }
-        public ViewResult Edit(int volunteerId) =>
+        public ViewResult EditVolunteer(int volunteerId) =>
          View(repository.Volunteers
          .FirstOrDefault(v => v.VolunteerID == volunteerId));
 
         [HttpPost]
-        public IActionResult Edit(Volunteer volunteer)
+        public IActionResult EditVolunteer(Volunteer volunteer)
         {
             if (ModelState.IsValid)
             {
@@ -36,7 +36,7 @@ namespace VolunteerManagementSystem.Controllers
                 return View(volunteer);
             }
         }
-        public ViewResult Create() => View("Edit", new Volunteer());
+        public ViewResult CreateVolunteer() => View("EditVolunteer", new Volunteer());
         public ViewResult ViewOpportunities()
         {
             return View(repository.Opportunities);
@@ -44,6 +44,36 @@ namespace VolunteerManagementSystem.Controllers
         public ViewResult ManageOpportunity()
         {
             return View(repository.Opportunities);
+        }
+        public ViewResult EditOpportunity(int opportunityId) =>
+        View(repository.Opportunities
+        .FirstOrDefault(o => o.OpportunityID == opportunityId));
+
+        [HttpPost]
+        public IActionResult EditOpportunity(Opportunity opportunity)
+        {
+            if (ModelState.IsValid)
+            {
+                repository.SaveOpportunity(opportunity);
+                TempData["message"] = $"{opportunity.Title} has been saved";
+                return RedirectToAction("ManageOpportunity");
+            }
+            else
+            {
+                // there is something wrong with the data values
+                return View(opportunity);
+            }
+        }
+        public ViewResult CreateOpportunity() => View("EditOpportunity", new Opportunity());
+        [HttpPost]
+        public IActionResult Delete(int opportunityId)
+        {
+            Opportunity deletedOpportunity = repository.DeleteOpportunity(opportunityId);
+            if (deletedOpportunity != null)
+            {
+                TempData["message"] = $"{deletedOpportunity.Title} was deleted";
+            }
+            return RedirectToAction("ManageOpportunity");
         }
         public ViewResult ViewVolunteers()
         {

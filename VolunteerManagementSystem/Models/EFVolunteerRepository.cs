@@ -48,5 +48,34 @@ namespace VolunteerManagementSystem.Models
             context.SaveChanges();
         }
         public IEnumerable<Opportunity> Opportunities => context.Opportunities;
+        public void SaveOpportunity(Opportunity opportunity)
+        {
+            if (opportunity.OpportunityID == 0)
+            {
+                context.Opportunities.Add(opportunity);
+            }
+            else
+            {
+                Opportunity dbEntry = context.Opportunities
+                .FirstOrDefault(o => o.OpportunityID == opportunity.OpportunityID);
+                if (dbEntry != null)
+                {
+                    dbEntry.Title = opportunity.Title;
+                    dbEntry.Description = opportunity.Description;
+                }
+            }
+            context.SaveChanges();
+        }
+        public Opportunity DeleteOpportunity(int opportunityID)
+        {
+            Opportunity dbEntry = context.Opportunities
+            .FirstOrDefault(o => o.OpportunityID == opportunityID);
+            if (dbEntry != null)
+            {
+                context.Opportunities.Remove(dbEntry);
+                context.SaveChanges();
+            }
+            return dbEntry;
+        }
     }
 }

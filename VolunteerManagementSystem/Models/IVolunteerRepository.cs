@@ -9,5 +9,7 @@ namespace VolunteerManagementSystem.Models
         IEnumerable<Volunteer> Volunteers { get; }
         void SaveVolunteer(Volunteer volunteer);
         IEnumerable<Opportunity> Opportunities { get; }
+        void SaveOpportunity(Opportunity opportunity);
+        Opportunity DeleteOpportunity(int opportunityID);
     }
 }
