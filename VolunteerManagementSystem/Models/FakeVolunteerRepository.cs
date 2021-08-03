@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 namespace VolunteerManagementSystem.Models
 {
- public class FakeVolunteertRepository : IVolunteerRepository
+ public class FakeVolunteerRepository : IVolunteerRepository
  {
  public IEnumerable<Volunteer> Volunteers => new List<Volunteer> {new Volunteer { VolunteerID =  0, FirstName =  "Matthew", LastName =  "Campbell", Username =  "CampbellSoup", Password =  "IDontHaveTimeForPasswords", PreferredCenter =  "Outdoors", SkillInterests =  "Survival", Availability =  "TRF", Address =  "9312 West Avondale Drive", Phone =  "8392951859", Email =  "abert@hotmail.com", Education =  "Adventure Education", Licenses =  "None", EmergencyName =  "Bob Campbell", EmergencyPhone =  "3892918042", EmergencyEmail =  "afjeioqw@gmail.com", EmergencyAddress =  "708 Worcester Drive", ValidLicense =  "No", ValidSocial =  "No", ApprovalStatus  =  "Inactive" },
 new Volunteer { VolunteerID =  1, FirstName =  "Al", LastName =  "Jebra", Username =  "algebrarox", Password =  "mathisawesome", PreferredCenter =  "Main Office", SkillInterests =  "Math/Accounting", Availability =  "MTWRF", Address =  "94 Ridgefield", Phone =  "9301859310", Email =  "math@gmail.com", Education =  "Accounting", Licenses =  "None", EmergencyName =  "Cal Culus", EmergencyPhone =  "9282109094", EmergencyEmail =  "maths@gmail.com", EmergencyAddress =  "6174 Kaprekar Boulevard", ValidLicense =  "No", ValidSocial =  "No", ApprovalStatus  =  "Pending Approval" },
