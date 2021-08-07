@@ -83,5 +83,12 @@ namespace VolunteerManagementSystem.Controllers
                 Opportunities = repository.Opportunities
             });
         }
+        public ViewResult List(SearchTerm term)
+ => View(new VolunteersListViewModel
+ {
+     Volunteers = repository.Volunteers
+ .Where(p => term.SearchString == null || p.FirstName.Contains(term.SearchString, StringComparison.CurrentCultureIgnoreCase) || p.LastName.Contains(term.SearchString, StringComparison.CurrentCultureIgnoreCase) )
+     .OrderBy(p => p.LastName)
+ });
     }
 }
