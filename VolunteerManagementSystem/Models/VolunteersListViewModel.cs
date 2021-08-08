@@ -8,6 +8,5 @@ namespace VolunteerManagementSystem.Models
     public class VolunteersListViewModel
     {
             public IEnumerable<Volunteer> Volunteers { get; set; }
-        public string SearchTerm { get; set; }
     }
 }
