@@ -90,5 +90,12 @@ namespace VolunteerManagementSystem.Controllers
  .Where(p => term.SearchString == null || p.FirstName.Contains(term.SearchString, StringComparison.CurrentCultureIgnoreCase) || p.LastName.Contains(term.SearchString, StringComparison.CurrentCultureIgnoreCase) )
      .OrderBy(p => p.LastName)
  });
+ 
+  public ViewResult List(FilterTerm term) => View(new VolunteersListViewModel
+        {
+            Volunteers = repository.Volunteers
+ .Where(p => term.FilterString == null || term.FilterString.Contains(p.Approval))
+     .OrderBy(p => p.LastName)
+        });
     }
 }
