@@ -6,13 +6,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Admin Homepage</title>
+    <link href="~/css/Style/StyleSheet1.css" rel="stylesheet" type="text/css" />
 </head>
-<body class="container text-center">
-    <h1>Hello, @Model.Username!</h1>
-    <p><a class="btn-link" asp-controller="Volunteer" asp-action="ManageVolunteer">Manage Volunteers</a></p>
-   
-    <p><a class="btn-link" asp-controller="Volunteer" asp-action="ManageOpportunity">Manage Opportunities</a></p>
+<body class="center" style="background-color: powderblue">
+    <h1 class="title">Hello, @Model.Username!</h1>
+    <p><a class="ManageButton" asp-controller="Volunteer" asp-action="ManageVolunteer">Manage Volunteers</a></p>
+    <p>OR</p>
+    <p><a class="ManageButton" asp-controller="Volunteer" asp-action="ManageOpportunity">Manage Opportunities</a></p>
 </body>
 </html>

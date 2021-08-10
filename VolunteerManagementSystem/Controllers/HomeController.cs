@@ -41,12 +41,6 @@ namespace VolunteerManagementSystem.Controllers
                 return View();
             }
         }
-        public ViewResult ManageOpportunity()
-        {
-            // need to make database to store opportunities
-            return View(LoginRepository.Responses.Where(r => r.Username == "Ashley"));
-        }
-
-        
+              
     }
 }

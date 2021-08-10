@@ -1,0 +1,62 @@
+﻿body {
+    text-align:center;
+    margin-top: 200px;
+}
+.title {
+    font-family: "Malgun Gothic";
+    font-weight: bold;
+    color: #113999;
+    text-shadow: 2px 2px 5px lightseagreen;
+}
+a{
+    text-decoration: none;
+}
+.button {
+    display: inline-block;
+    background-color: #115999;
+    border-radius: 10px;
+    border: 4px double #cccccc;
+    color: #ffffff;
+    text-align: center;
+    font-size: 20px;
+    padding: 8px;
+    width: 90px;
+    cursor: pointer;
+    margin: 5px;
+}
+.button:hover {
+    background-color: #11a999
+}
+label {
+    font-family: "Malgun Gothic";
+    font-weight: bold;
+}
+input[type=text] {
+    width: 20%;
+    padding: 7px 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+input[type=text]:focus {
+    border: 3px solid #555;
+}
+.input-validation-error {
+    border-color: red;
+    background-color: #fee;
+}
+.ManageButton {
+    display: inline-block;
+    background-color: #115999;
+    border-radius: 10px;
+    border: 4px double #cccccc;
+    color: #ffffff;
+    text-align: center;
+    font-size: 24px;
+    padding: 12px;
+    width: 155px;
+    cursor: pointer;
+    margin: 5px;
+}
+.ManageButton:hover {
+    background-color: #11a999
+}

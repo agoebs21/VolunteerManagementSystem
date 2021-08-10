@@ -5,27 +5,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Admin Login</title>
+    <link href="~/css/Style/StyleSheet1.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <meta name="viewport" content="width=device-width" />
-    <div class="text-center">
-        <h1 class="display-4">Admin</h1>
-        <form class="p -a-1" asp-action="AdminLogin" method="post">
-            <div asp-validation-summary="All  "></div>
+    <div class="center">
+        <h1 class="title">Login</h1>
+        <form class="form" asp-action="AdminLogin" method="post">
+            <div><span style="color: red" asp-validation-for="Username" class="text-danger"></span></div>
+            <div><span style="color:red" asp-validation-for="Password" class="text-danger"></span></div>
             <div>
-                <label asp-for="Username">Username:</label>
+                <label asp-for="Username">Username: </label>
                 <input class="form-control" asp-for="Username" />
             </div>
             <br />
             <div>
-                <label asp-for="Password">Password:</label>
+                <label asp-for="Password">Password: </label>
                 <input class="form-control" asp-for="Password" />
             </div>
             <br />
             <div>
-                <button class="btn btn-primary text-center" type="submit"> Submit </button>
+                <button class="button" type="submit">Submit</button>
             </div>
         </form>
     </div>

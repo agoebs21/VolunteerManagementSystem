@@ -4,14 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using VolunteerManagementSystem.Models;
-namespace VolunteerManagementSystem.Controllers 
+namespace VolunteerManagementSystem.Controllers
 {
-    public class VolunteerController : Controller 
+    public class VolunteerController : Controller
     {
-        private IVolunteerRepository repository; 
+        private IVolunteerRepository repository;
         public VolunteerController(IVolunteerRepository repo)
         {
-            repository = repo; 
+            repository = repo;
         }
         public ViewResult ManageVolunteer()
         {
@@ -27,7 +27,7 @@ namespace VolunteerManagementSystem.Controllers
             if (ModelState.IsValid)
             {
                 repository.SaveVolunteer(volunteer);
-                TempData["message"] = $"{volunteer.FirstName +' ' + volunteer.LastName} has been saved";
+                TempData["message"] = $"{volunteer.FirstName + ' ' + volunteer.LastName} has been saved";
                 return RedirectToAction("ManageVolunteer");
             }
             else
@@ -83,19 +83,28 @@ namespace VolunteerManagementSystem.Controllers
                 Opportunities = repository.Opportunities
             });
         }
-        public ViewResult List(SearchTerm term)
- => View(new VolunteersListViewModel
- {
-     Volunteers = repository.Volunteers
- .Where(p => term.SearchString == null || p.FirstName.Contains(term.SearchString, StringComparison.CurrentCultureIgnoreCase) || p.LastName.Contains(term.SearchString, StringComparison.CurrentCultureIgnoreCase) )
-     .OrderBy(p => p.LastName)
- });
- 
-  public ViewResult List(FilterTerm term) => View(new VolunteersListViewModel
+        public ViewResult SearchForm()
         {
-            Volunteers = repository.Volunteers
- .Where(p => term.FilterString == null || term.FilterString.Contains(p.Approval))
-     .OrderBy(p => p.LastName)
-        });
+            return View();
+        }
+        public ViewResult List(SearchTerm term)
+         => View(new VolunteersListViewModel
+         {
+             Volunteers = repository.Volunteers
+            .Where(p => term.SearchString == null || p.FirstName.Contains(term.SearchString, StringComparison.CurrentCultureIgnoreCase) || p.LastName.Contains(term.SearchString, StringComparison.CurrentCultureIgnoreCase))
+             .OrderBy(p => p.LastName)
+         });
     }
 }
+    
+ 
+        /*
+        public ViewResult List(FilterTerm term) => View(new VolunteersListViewModel
+            {
+                Volunteers = repository.Volunteers
+                .Where(p => term.FilterString == null || term.FilterString.Contains(p.Approval))
+                    .OrderBy(p => p.LastName)
+                    });
+                }
+            }
+            */

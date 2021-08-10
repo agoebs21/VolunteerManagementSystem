@@ -2,11 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-  </PropertyGroup>
-	
-   <ItemGroup>
-	   <Folder Include="wwwroot\" />     
-   </ItemGroup>    
+  </PropertyGroup>    
    <ItemGroup> 
 	   <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="2.2.0" />
 	   <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.2" /> 
@@ -21,6 +17,9 @@
 	<ItemGroup>
 		<DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.4" />
 		<DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.3" />     
+	</ItemGroup>    
+	<ItemGroup>
+	  <None Include="wwwroot\css\Style\StyleSheet1.css" />
 	</ItemGroup>
 
 </Project>
