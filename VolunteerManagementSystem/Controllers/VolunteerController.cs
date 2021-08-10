@@ -83,10 +83,11 @@ namespace VolunteerManagementSystem.Controllers
                 Opportunities = repository.Opportunities
             });
         }
-        public ViewResult SearchForm()
+        public ViewResult FilterForm()
         {
             return View();
         }
+/*
         public ViewResult List(SearchTerm term)
          => View(new VolunteersListViewModel
          {
@@ -96,9 +97,9 @@ namespace VolunteerManagementSystem.Controllers
          });
     }
 }
-    
+    */
  
-        /*
+        
         public ViewResult List(FilterTerm term) => View(new VolunteersListViewModel
             {
                 Volunteers = repository.Volunteers
@@ -107,4 +108,4 @@ namespace VolunteerManagementSystem.Controllers
                     });
                 }
             }
-            */
+            
