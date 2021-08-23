@@ -6,26 +6,38 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <title>Opportunity's List of Volunteers</title>
+    <link href="~/css/Style/StyleSheet2.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <div class=" container">
-        <h2>opportunity title</h2>
+    <div class="container">
 
-        <table class="table table-sm table-striped table-bordered">
-            <thead>
-                <tr>
-                    <th>Volunteers</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var v in Model.Volunteers)
-                {
+        @if (Model.Volunteers.Count() == 0)
+        {
+            <p style="font-size: 20px; color: darkred">No Matches Found</p>
+        }
+        else 
+        { 
+            <table class="table table-sm table-striped table-bordered">
+                <thead>
                     <tr>
-                        <td>@v.FirstName @v.LastName</td>
+                        <th style="font-size: 20px">Matched Volunteers:</th>
                     </tr>
-                }
-            </tbody>
-        </table>
-    </div>
+                </thead>
+                <tbody>
+                    @foreach (var v in Model.Volunteers)
+                    {
+                        <tr>
+                            <td style="font-size:16px; padding: 8px">@v.FirstName @v.LastName</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        </div>
+        <br />
+        <div>
+            <a asp-action="ManageOpportunity" class="button">Back</a>
+        </div>
 </body>
 </html>

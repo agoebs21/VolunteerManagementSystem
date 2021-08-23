@@ -1,8 +1,10 @@
- @model VolunteersListViewModel
-
-<table>
-@foreach (var p in Model.Volunteers)
-{
-    @Html.Partial("VolunteerSummary", p)
+@model ViewModel
+@{
+    Layout = null;
 }
+<table>
+    @foreach (var p in Model.Volunteers)
+    {
+        @Html.Partial("VolunteerSummary", p)
+    }
 </table>

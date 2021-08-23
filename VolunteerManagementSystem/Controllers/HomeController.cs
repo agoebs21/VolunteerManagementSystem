@@ -11,6 +11,11 @@ namespace VolunteerManagementSystem.Controllers
 {
     public class HomeController : Controller
     {
+        private IVolunteerRepository repository;
+        public HomeController(IVolunteerRepository repo)
+        {
+            repository = repo;
+        }
         public ActionResult Index()
         {
             return View("Index");
@@ -30,17 +35,29 @@ namespace VolunteerManagementSystem.Controllers
         [HttpPost]
         public ViewResult AdminLogin(Login login)
         {
-            if (ModelState.IsValid)
+            foreach (var l in repository.Login)
             {
-                LoginRepository.AddResponse(login);
-                return View("AdminHome", login);
+                if (login.Username == null || login.Password == null)
+                {
+                    return View();
+                }
+                else if (login.Username.Equals(l.Username) && login.Password.Equals(l.Password))
+                {
+                    
+                    return View("AdminHome", new ViewModel { CurrentUser = login.Username });
+                }
+                else 
+                {
+                    continue;
+                }
             }
-            else
-            {
-                // there is a validation error 
-                return View();
-            }
+            //validation
+            ViewBag.ErrorMsg = "Invalid Username or Password";
+            return View();
         }
-              
+        public ViewResult AdminHome(Login login)
+        {
+            return View(new ViewModel { Login = repository.Login, CurrentUser = login.Username });
+        }
     }
 }

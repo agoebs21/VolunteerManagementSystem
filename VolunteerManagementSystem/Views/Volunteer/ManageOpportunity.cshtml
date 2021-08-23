@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Opportunity>
+﻿@model ViewModel
 @{
     Layout = null;
 }
@@ -7,47 +7,67 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Manage Opportunities</title>
+    <link href="~/css/Style/StyleSheet2.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <div class=" container">
-        <h2>Manage Opportunities</h2>
-        <input type="text" placeholder="Search...">
-        <select name="Filter">
-            <option value="" disabled selected>Select Filter</option>
-            <option value="recent">Most Recent (60 days)</option>
-            <option value="center">By Center</option>
-        </select>
-        <table class="table table-sm table-striped table-bordered">
+        <h1 class="title">Manage Opportunities</h1>
+        <form asp-action="SearchOpp" method="post">
+            <input asp-for="SearchString" placeholder="Search..." />
+            <button class="button" type="submit">Search</button>
+        </form>
+        <form asp-action="FilterOpp" method="post">
+            <select class="dropdown" asp-for="FilterString">
+                <option value="" disabled selected>Select Filter</option>
+                <option value="recent">Most Recent (60 days)</option>
+                <option value="Environment">Environmental Center</option>
+                <option value="Food/Supply">Food/Supply Center</option>
+                <option value="Care">Care Center</option>
+                <option value="Learn">Learning Center</option>
+                <option value="Media">Media Center</option>
+            </select>
+            <button class="button" type="submit">Filter</button>
+        </form>
+        <table id="table">
             <thead>
                 <tr>
-                    <th>Opportunities</th>
+                    <th colspan="3">Opportunities</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var o in Model)
+                @foreach (var o in Model.Opportunities)
                 {
-                <tr>
-                    <td>
-                        <details>
-                            <summary><a class="btn-link" asp-action="ViewVolunteers">@o.Title</a></summary>
-                            <p>@o.Description</p>
-                    </details>
-                    </td>
+                    <tr>
+                        <td>
+                            <details>
+                                <summary>
+                                    <a class="btn-link" asp-action="MatchOpp" asp-route-center="@o.Center">@o.Title</a>
+                                    <input type="hidden" value="@o.Center"/>
+                                </summary>
+                                <p>@o.Description</p>
+                            </details>
+                        </td>
 
-                    <td>
-                        <form asp-action="Delete" method="post">
+                        <td style="text-align:center; width: 20%">
                             <a asp-action="EditOpportunity" class="btn btn-sm btn-warning" asp-route-opportunityId="@o.OpportunityID">Edit</a>
                             <input type="hidden" name="OpportunityID" value="@o.OpportunityID" />
-                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                        </form>
-                    </td>
-                </tr>
+                        </td>
+                        <td style="text-align:center; width: 10%">
+                            <form asp-action="Delete" method="post">
+                                <input type="hidden" name="OpportunityID" value="@o.OpportunityID" />
+                                <button style="color:red; font-size:18px; font-weight:bold" type="submit" class="btn btn-danger btn-sm">X</button>
+                            </form>
+                        </td>
+                    </tr>
                 }
 
             </tbody>
         </table>
-        <div class="text-center">
-            <a asp-action="CreateOpportunity" class="btn btn-primary">Add Opportunity</a>
+        <div class="add">
+            <a asp-action="CreateOpportunity" class="addbutton">Add Opportunity</a>
+        </div>
+        <div class="back">
+            <a asp-controller="Home" asp-action="AdminHome" asp-route-username="Username" class="backbutton">Back</a>
         </div>
     </div>
 </body>

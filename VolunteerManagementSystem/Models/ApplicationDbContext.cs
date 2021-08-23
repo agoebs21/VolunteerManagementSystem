@@ -10,5 +10,6 @@ namespace VolunteerManagementSystem.Models
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { } 
         public DbSet<Volunteer> Volunteers { get; set; }
         public DbSet<Opportunity> Opportunities { get; set; }
+        public DbSet<Login> Login { get; set; }
     }
 }

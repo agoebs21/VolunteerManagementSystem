@@ -10,5 +10,6 @@ namespace VolunteerManagementSystem.Models
         public int OpportunityID { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
+        public string Center { get; set; }
     }
 }

@@ -3,19 +3,39 @@
     ViewBag.Title = "Edit Opportunity";
     Layout = null;
 }
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit Opportunities</title>
+    <link href="~/css/Style/StyleSheet2.css" rel="stylesheet" type="text/css" />
+</head>
 <form asp-action="EditOpportunity" method="post">
     <input type="hidden" asp-for="OpportunityID" />
     <div class="form-group">
-        <label asp-for="Title"></label>
+        <label asp-for="Title">Title:</label>
         <input asp-for="Title" class="form-control" />
     </div>
+    <br />
     <div class="form-group">
-        <label asp-for="Description"></label>
-        <input asp-for="Description" class="form-control" />
+        <label asp-for="Description">Description:</label>
+        <textarea asp-for="Description" class="textbox"></textarea>
     </div>
     <br />
+    <div class="form-group">
+        <label>Center:</label>
+        <select asp-for="Center" class="dropdown">
+            <option value="" disabled selected>Select</option>
+            <option value="Environment">Environmental Center</option>
+            <option value="Food/Supply">Food/Supply Center</option>
+            <option value="Care">Care Center</option>
+            <option value="Learn">Learning Center</option>
+            <option value="Media">Media Center</option>
+        </select>
+    </div>
+    <br />
+    <br />
     <div class="text-center">
-        <button class="btn btn-primary" type="submit">Save</button>
-        <button asp-action="ManageOpportunity" class="btn btn-primary">Cancel</button>
+        <button class="button" type="submit">Save</button>
+        <button asp-action="ManageOpportunity" class="button">Cancel</button>
     </div>
 </form>

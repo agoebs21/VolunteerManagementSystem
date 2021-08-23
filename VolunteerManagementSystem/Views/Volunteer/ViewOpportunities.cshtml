@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Opportunity>
+﻿@model ViewModel
 @{
     Layout = null;
 }
@@ -7,27 +7,37 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Volunteer's List of Opportunities</title>
+    <link href="~/css/Style/StyleSheet2.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <div class=" container">
-        
-        <h2>Volunteer Name</h2>                  
+    <div class="container">
 
-        <table class="table table-sm table-striped table-bordered">
-            <thead>
-                <tr>
-                    <th>Opportunities</th>
-                </tr>
-            </thead>
-            <tbody>
-                    @foreach (var o in Model)
+        @if (Model.FilterString == null)
+        {
+            <p style="font-size: 20px; color: darkred">No Matches Found</p>
+        }
+        else
+        {
+            <table>
+                <thead>
+                    <tr>
+                        <th style="font-size: 20px">Matched Opportunities:</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var o in Model.Opportunities)
                     {
                         <tr>
-                            <td>@o.Title</td>
+                            <td style="font-size:16px; padding: 8px">@o.Title</td>
                         </tr>
                     }
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        }
+    </div>
+    <br />
+    <div>
+        <a asp-action="ManageVolunteer" class="button">Back</a>
     </div>
 </body>
 </html>

@@ -13,10 +13,17 @@ namespace VolunteerManagementSystem.Controllers
         {
             repository = repo;
         }
-        public ViewResult ManageVolunteer()
+        
+        public ViewResult ManageVolunteer(Login login)
         {
-            return View(repository.Volunteers);
+            return View(new ViewModel
+            {
+                CurrentUser = login.Username,
+                Volunteers = repository.Volunteers,
+                Opportunities = repository.Opportunities
+            });
         }
+
         public ViewResult EditVolunteer(int volunteerId) =>
          View(repository.Volunteers
          .FirstOrDefault(v => v.VolunteerID == volunteerId));
@@ -41,10 +48,17 @@ namespace VolunteerManagementSystem.Controllers
         {
             return View(repository.Opportunities);
         }
-        public ViewResult ManageOpportunity()
+
+        public ViewResult ManageOpportunity(Login login)
         {
-            return View(repository.Opportunities);
+            return View(new ViewModel
+            {
+                CurrentUser = login.Username,
+                Volunteers = repository.Volunteers,
+                Opportunities = repository.Opportunities
+            });
         }
+
         public ViewResult EditOpportunity(int opportunityId) =>
         View(repository.Opportunities
         .FirstOrDefault(o => o.OpportunityID == opportunityId));
@@ -83,29 +97,69 @@ namespace VolunteerManagementSystem.Controllers
                 Opportunities = repository.Opportunities
             });
         }
+
+        public ViewResult SearchForm()
+        {
+            return View();
+        }
         public ViewResult FilterForm()
         {
             return View();
         }
-/*
-        public ViewResult List(SearchTerm term)
-         => View(new VolunteersListViewModel
+
+        public ViewResult SearchVol(SearchTerm term)
+         => View("ManageVolunteer", new ViewModel
          {
              Volunteers = repository.Volunteers
             .Where(p => term.SearchString == null || p.FirstName.Contains(term.SearchString, StringComparison.CurrentCultureIgnoreCase) || p.LastName.Contains(term.SearchString, StringComparison.CurrentCultureIgnoreCase))
              .OrderBy(p => p.LastName)
          });
-    }
-}
-    */
+         
  
-        
-        public ViewResult List(FilterTerm term) => View(new VolunteersListViewModel
+        public ViewResult FilterVol(FilterTerm term) => View("ManageVolunteer", new ViewModel
             {
                 Volunteers = repository.Volunteers
                 .Where(p => term.FilterString == null || term.FilterString.Contains(p.Approval))
                     .OrderBy(p => p.LastName)
-                    });
-                }
-            }
+             });
+           
+        public ViewResult SearchOpp(SearchTerm term)
+             => View("ManageOpportunity", new ViewModel
+             {
+                 Opportunities = repository.Opportunities
+                .Where(p => term.SearchString == null || p.Title.Contains(term.SearchString, StringComparison.CurrentCultureIgnoreCase))
+                 .OrderBy(p => p.Title)
+             });
+
+
+         public ViewResult FilterOpp(FilterTerm term) 
+            => View("ManageOpportunity", new ViewModel
+            {
+                Opportunities = repository.Opportunities
+                    .Where(p => term.FilterString == null || term.FilterString.Contains(p.Center))
+                        .OrderBy(p => p.Title)
+            });
+
+        public ViewResult MatchVol(String center)
+           => View("ViewOpportunities", new ViewModel
+           {
+                FilterString = center,
+                Opportunities = repository.Opportunities
+                   .Where(o => center == null || center.Equals(o.Center))
+                       .OrderBy(o => o.Title)
+           });
+
+        public ViewResult MatchOpp(String center)
+           => View("ViewVolunteers", new ViewModel
+           {
+               FilterString = center,
+               Volunteers = repository.Volunteers
+                   .Where(v => center.Equals(v.CentersPreferred))
+                       .OrderBy(v => v.FirstName),
+           });
+
+
+    }
+
+     }
             

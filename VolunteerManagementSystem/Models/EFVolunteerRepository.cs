@@ -11,6 +11,26 @@ namespace VolunteerManagementSystem.Models
         {
             context = ctx;
         }
+        public IEnumerable<Login> Login => context.Login;
+        public void SaveLogin(Login login)
+        {
+            if (login.ID == 0)
+            {
+                context.Login.Add(login);
+            }
+            else
+            {
+                Login dbEntry = context.Login
+                .FirstOrDefault(l => l.ID == login.ID);
+                if (dbEntry != null)
+                {
+                    dbEntry.Username = login.Username;
+                    dbEntry.Password = login.Password;
+                    dbEntry.Designation = login.Designation;
+                }
+            }
+            context.SaveChanges();
+        } 
         public IEnumerable<Volunteer> Volunteers => context.Volunteers;
         public void SaveVolunteer(Volunteer volunteer)
         {
@@ -62,6 +82,7 @@ namespace VolunteerManagementSystem.Models
                 {
                     dbEntry.Title = opportunity.Title;
                     dbEntry.Description = opportunity.Description;
+                    dbEntry.Center = opportunity.Center;
                 }
             }
             context.SaveChanges();

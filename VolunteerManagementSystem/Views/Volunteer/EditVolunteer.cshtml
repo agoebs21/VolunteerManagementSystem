@@ -3,43 +3,47 @@
     ViewBag.Title = "Edit Volunteer";
     Layout = null;
 }
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Edit Volunteers</title>
+        <link href="~/css/Style/StyleSheet2.css" rel="stylesheet" type="text/css" />
+    </head>
     <form asp-action="EditVolunteer" method="post">
         <input type="hidden" asp-for="VolunteerID" />
         <div class="form-group">
-            <label asp-for="FirstName"></label>
+            <label asp-for="FirstName">First Name:</label>
             <input asp-for="FirstName" class="form-control" />
-        </div>
+        </div><br>
         <div class="form-group">
-            <label asp-for="LastName"></label>
+            <label asp-for="LastName">Last Name:</label>
             <input asp-for="LastName" class="form-control" />
-        </div>
+        </div><br>
         <div class="form-group">
-            <label asp-for="Username"></label>
-            <input asp-for="Username" class="form-control"/>
-        </div>
+            <label asp-for="Username">Username:</label>
+            <input asp-for="Username" class="form-control" />
+        </div><br>
         <div class="form-group">
-            <label asp-for="Password"></label>
+            <label asp-for="Password">Password:</label>
             <input asp-for="Password" class="form-control" />
-        </div>
+        </div><br>
         <div class="form-group">
             <label>Center Preferred:</label>
-            <select asp-for="CentersPreferred" class="form-control">
+            <select asp-for="CentersPreferred" class="dropdown">
                 <option value="" disabled selected>Select</option>
                 <option value="Environment">Environmental Center</option>
-                <option value="Kitchen">Food/Supply Center</option>
-                <option value="Senior">Senior Center</option>
-                <option value="Kid">Kids Center</option>
-                <option value="Study">Study Center</option>
+                <option value="Food/Supply">Food/Supply Center</option>
+                <option value="Care">Care Center</option>
+                <option value="Learn">Learning Center</option>
                 <option value="Media">Media Center</option>
             </select>
-        </div>
+        </div><br>
         <div class="form-group">
-            <label asp-for="SkillsInterests"></label>
-            <textarea asp-for="SkillsInterests" class="form-control"></textarea>
-        </div>
+            <label asp-for="SkillsInterests">Skills and Interests:</label>
+            <textarea asp-for="SkillsInterests" class="textbox"></textarea>
+        </div><br>
         <div class="form-group">
             <label>Availability:</label>
-            <select asp-for="Availability" class="form-control">
+            <select asp-for="Availability" class="dropdown">
                 <option value="" disabled selected>Select</option>
                 <option value="M">Monday</option>
                 <option value="T">Tuesday</option>
@@ -49,54 +53,54 @@
                 <option value="S">Saturday</option>
                 <option value="Su">Sunday</option>
             </select>
-        </div>
+        </div><br>
         <div class="form-group">
-            <label asp-for="Address"></label>
+            <label asp-for="Address">Address:</label>
             <input asp-for="Address" class="form-control" />
-        </div>
+        </div><br>
         <div class="form-group">
-            <label asp-for="PhoneNumber"></label>
+            <label asp-for="PhoneNumber">Phone Number:</label>
             <input asp-for="PhoneNumber" class="form-control" />
-        </div>
+        </div><br>
         <div class="form-group">
-            <label asp-for="Email"></label>
+            <label asp-for="Email">Email:</label>
             <input asp-for="Email" class="form-control" />
-        </div>
+        </div><br>
         <div class="form-group">
-            <label asp-for="Education"></label>
+            <label asp-for="Education">Education:</label>
             <input asp-for="Education" class="form-control" />
-        </div>
+        </div><br>
         <div class="form-group">
-            <label asp-for="Licenses"></label>
+            <label asp-for="Licenses">Licenses:</label>
             <input asp-for="Licenses" class="form-control" />
-        </div>
+        </div><br>
         <div class="form-group">
-            <label asp-for="EmergencyName"></label>
+            <label asp-for="EmergencyName">Emergency Contact Name:</label>
             <input asp-for="EmergencyName" class="form-control" />
-        </div>
+        </div><br>
         <div class="form-group">
-            <label asp-for="EmergencyPhone"></label>
+            <label asp-for="EmergencyPhone">Emergency Contact Phone Number:</label>
             <input asp-for="EmergencyPhone" class="form-control" />
-        </div>
+        </div><br>
         <div class="form-group">
-            <label asp-for="EmergencyEmail"></label>
+            <label asp-for="EmergencyEmail">Emergency Contact Email:</label>
             <input asp-for="EmergencyEmail" class="form-control" />
-        </div>
+        </div><br>
         <div class="form-group">
-            <label asp-for="EmergencyAddress"></label>
+            <label asp-for="EmergencyAddress">Emergency Contact Address:</label>
             <input asp-for="EmergencyAddress" class="form-control" />
-        </div>
+        </div><br>
         <div class="form-group">
-            <label asp-for="ValidLicense"></label>
-            <input asp-for="ValidLicense" class="form-control" />
-        </div>        
+            <label asp-for="ValidLicense">Valid License:</label>
+            <input asp-for="ValidLicense" class="check" />
+        </div><br>
         <div class="form-group">
-            <label asp-for="ValidSocial"></label>
-            <input asp-for="ValidSocial" class="form-control" />
-        </div>
+            <label asp-for="ValidSocial">Valid Social Security Number:</label>
+            <input asp-for="ValidSocial" class="check" />
+        </div><br>
         <div class="form-group">
-            <label>Approval</label>
-            <select asp-for="Approval" class="form-control">
+            <label>Approval Status:</label>
+            <select asp-for="Approval" class="dropdown">
                 <option value="" disabled selected>Select</option>
                 <option value="Approved">Approved</option>
                 <option value="Pending">Pending Approval</option>
@@ -105,8 +109,9 @@
             </select>
         </div>
         <br />
+        <br />
         <div class="text-center">
-            <button class="btn btn-primary" type="submit">Save</button>
-            <button asp-action="ManageVolunteer" class="btn btn-primary">Cancel</button>
+            <button class="button" type="submit">Save</button>
+            <button asp-action="ManageVolunteer" class="button">Cancel</button>
         </div>
     </form>

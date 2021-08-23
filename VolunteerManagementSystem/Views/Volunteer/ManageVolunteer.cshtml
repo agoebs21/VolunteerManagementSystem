@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Volunteer>
+﻿@model ViewModel
 @{
     Layout = null;
 }
@@ -7,43 +7,57 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Manage Volunteers</title>
+    <link href="~/css/Style/StyleSheet2.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <div class=" container">
-        <h2>Manage Volunteers</h2>
-        <a asp-action="SearchForm"  class="btn btn-sm btn-warning">search</a>
-        <a asp-action="FilterForm" class="btn btn-sm btn-warning">FILTER</a>
-        <select name="Filter">
-            <option value="" disabled selected>Select Filter</option>
-            <option value="approvedpending">Approved/Pending Approval</option>
-            <option value="approved">Approved</option>
-            <option value="pending">Pending Approval</option>
-            <option value="disapproved">Disapproved</option>
-            <option value="inactive">Inactive</option>
-            <option value="all">All</option>
-        </select>
-        <table class="table table-sm table-striped table-bordered">
+    <div class="container">
+        <h1 class="title">Manage Volunteers</h1>
+        <form asp-action="SearchVol" method="post">
+            <input asp-for="SearchString" placeholder="Search..." />
+            <button class="button" type="submit">Search</button>
+        </form>
+        <form asp-action="FilterVol" method="post">
+            <select class="dropdown" asp-for="FilterString">
+                <option value="" disabled selected>Select Filter</option>
+                <option value="Approved/Pending">Approved/Pending Approval</option>
+                <option value="Approved">Approved</option>
+                <option value="Pending">Pending Approval</option>
+                <option value="Disapproved">Disapproved</option>
+                <option value="Inactive">Inactive</option>
+                <option value="Approved/Pending/Disapproved/Inactive">All</option>
+            </select>
+            <button class="button" type="submit">Filter</button>
+        </form>
+        <a asp-action="ManageVolunteer" method="get">Reset</a>
+        <table id="table">
             <thead>
                 <tr>
-                    <th>Volunteers</th>
+                    <th colspan="2">Volunteers</th>
                 </tr>
             </thead>
             <tbody>
 
-                @foreach (var v in Model)
+                @foreach (var v in Model.Volunteers)
                 {
-                <tr>
-                    <td><a class="btn-link" asp-action="ViewOpportunities">@v.FirstName @v.LastName</a></td>
-                    <td><a asp-action="EditVolunteer" class="btn btn-sm btn-warning" asp-route-volunteerId="@v.VolunteerID">Edit</a>
-                        <input type="hidden" name="ProductID" value="@v.VolunteerID" />                       
-                    </td>
-                </tr>
+                    <tr>
+                        <td>
+                            <a class="name" asp-action="MatchVol" asp-route-center="@v.CentersPreferred">@v.FirstName @v.LastName</a>
+                            <input type="hidden" value="@v.CentersPreferred"/>
+                        </td>
+                        <td style="text-align:center; width: 20%">
+                            <a class="edit" asp-action="EditVolunteer" asp-route-volunteerId="@v.VolunteerID">Edit</a>
+                            <input type="hidden" value="@v.VolunteerID"/>
+                        </td>
+                    </tr>
                 }
 
             </tbody>
         </table>
-        <div class="text-center">
-            <a asp-action="CreateVolunteer" class="btn btn-primary">Add Volunteer</a>
+        <div class="add">
+            <a class="addbutton" asp-action="CreateVolunteer">Add Volunteer</a>
+        </div>
+        <div class="back">
+            <a asp-controller="Home" asp-action="AdminHome" asp-route-username="Username" class="backbutton">Back</a>
         </div>
     </div>
 </body>

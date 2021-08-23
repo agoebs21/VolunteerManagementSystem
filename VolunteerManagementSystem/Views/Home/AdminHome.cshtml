@@ -1,4 +1,4 @@
-﻿@model VolunteerManagementSystem.Models.Login
+﻿@model ViewModel
 
 @{
     Layout = null;
@@ -9,8 +9,8 @@
     <link href="~/css/Style/StyleSheet1.css" rel="stylesheet" type="text/css" />
 </head>
 <body class="center" style="background-color: powderblue">
-    <h1 class="title">Hello, @Model.Username!</h1>
-    <p><a class="ManageButton" asp-controller="Volunteer" asp-action="ManageVolunteer">Manage Volunteers</a></p>
+    <h1 class="title">Hello, @Model.CurrentUser !</h1>
+    <p><a class="ManageButton" asp-controller="Volunteer" asp-action="ManageVolunteer" asp-route-login="@Model.CurrentUser">Manage Volunteers</a></p>
     <p>OR</p>
     <p><a class="ManageButton" asp-controller="Volunteer" asp-action="ManageOpportunity">Manage Opportunities</a></p>
 </body>
